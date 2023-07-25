@@ -1,0 +1,619 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+
+  <meta name="viewport" content="width=500, user-scalable=no" />
+
+  <style>
+    @-webkit-keyframes strip
+    {
+      from
+      {
+        background-position: 0px 0px;
+      }
+
+      to
+      {
+        background-position: -18px 0px;
+      }
+    }
+
+    @keyframes strip
+    {
+      from
+      {
+        background-position: 0px 0px;
+      }
+
+      to
+      {
+        background-position: -18px 0px;
+      }
+    }
+
+    @-webkit-keyframes buildings
+    {
+      from
+      {
+        background-position: 0px 0px;
+      }
+
+      to
+      {
+        background-position: -92px 0px;
+      }
+    }
+
+    @keyframes buildings
+    {
+      from
+      {
+        background-position: 0px 0px;
+      }
+
+      to
+      {
+        background-position: -92px 0px;
+      }
+    }
+
+    @-webkit-keyframes bush
+    {
+      from
+      {
+        background-position: 0px 0px;
+      }
+
+      to
+      {
+        background-position: -183px 0px;
+      }
+    }
+
+    @keyframes bush
+    {
+      from
+      {
+        background-position: 0px 0px;
+      }
+
+      to
+      {
+        background-position: -183px 0px;
+      }
+    }
+
+    @-webkit-keyframes clouds
+    {
+      from
+      {
+        background-position: 0px 0px;
+      }
+
+      to
+      {
+        background-position: -265px 0px;
+      }
+    }
+
+    @keyframes clouds
+    {
+      from
+      {
+        background-position: 0px 0px;
+      }
+
+      to
+      {
+        background-position: -265px 0px;
+      }
+    }
+
+    body
+    {
+      margin: 0px !important;
+      background-color: #71C5CF;
+      overflow: hidden;
+    }
+
+    #Clouds
+    {
+      background: url('clouds.png');
+      background-position: 0px 0px;
+      width: 100%;
+      height: 23px;
+      bottom: 0px;
+      position: absolute;
+      margin-bottom: 200px;
+      -webkit-animation: clouds 25s linear infinite;
+      animation: clouds 25s linear infinite;
+    }
+
+    #BottomClouds
+    {
+      width: 100%;
+      height: 200px;
+      position: absolute;
+      bottom: 0px;
+      margin-bottom: 0px;
+      background-color: white;
+    }
+
+    #Buildings
+    {
+      background: url('Buildings.png');
+      background-position: 0px 0px;
+      width: 100%;
+      height: 53px;
+      bottom: 0px;
+      margin-bottom: 130px;
+      position: absolute;
+      -webkit-animation: buildings 6s linear infinite;
+      animation: buildings 6s linear infinite;
+    }
+
+    #Bush
+    {
+      background: url('bush.png');
+      background-position: 0px 0px;
+      width: 100%;
+      height: 42px;
+      bottom: 0px;
+      margin-bottom: 99px;
+      position: absolute;
+      -webkit-animation: bush 10s linear infinite;
+      animation: bush 10s linear infinite;
+    }
+
+    #Strip
+    {
+      background: url('strip.png');
+      background-position: 0px 0px;
+      width: 100%;
+      height: 19px;
+      bottom: 0px;
+      margin-bottom: 80px;
+      position: absolute;
+      -webkit-animation: strip 0.12s linear infinite;
+      animation: strip 0.12s linear infinite;
+      z-index: 99999999999999999999999999999999999;
+    }
+
+    #Ground
+    {
+      width: 100%;
+      height: 80px;
+      position: absolute;
+      bottom: 0px;
+      margin-top: -80px;
+      background-color: #DDD894;
+      z-index: 9999999999999999999999999999999999;
+    }
+
+    #Bird
+    {
+      position: absolute;
+      left: 150px;
+      width: 50px;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      z-index: 9999999999999999999999999999999999999999;
+    }
+
+    .MainPipe
+    {
+      position: absolute;
+      height: 100vh;
+      width: 68px;
+    }
+
+    .PipeTop
+    {
+      height: 1px;
+      width: 68px;
+      background-image: url('Pipe.png');
+      margin: 0px !important;
+    }
+
+    .PipeBottom
+    {
+      height: calc(100vh - 364px);
+      width: 68px;
+      background-image: url('Pipe.png');
+      margin: 0px !important;
+    }
+
+    .PipeHead
+    {
+      height: 32px;
+      width: 74px;
+      background-image: url('PipeHead.png');
+      margin-left: -3px;
+    }
+
+    .PipeMiddle
+    {
+      width: 68px;
+      height: 200px;
+      margin: 0px !important;
+    }
+
+    .Number
+    {
+      height: 37px;
+      width: 24px;
+      display: inline-block;
+      background-image: url('Numbers.png');
+      z-index: 9999999999999999999;
+    }
+
+    .NumberBlock
+    {
+      top: 50px;
+      left: 50vw;
+      position: absolute;
+      z-index: 9999999999999999999;
+    }
+
+    #GameOver
+    {
+      height: 56px;
+      width: 256px;
+      left: 50vw;
+      top: 50vh;
+      position: absolute;
+      margin-left: -128px;
+      margin-top: -28px;
+      background-image: url('GameOver.png');
+    }
+
+    #Start
+    {
+      height: 63px;
+      width: 114px;
+      left: 50vw;
+      top: 50vh;
+      position: absolute;
+      margin-left: -57px;
+      margin-top: 60px;
+      background-image: url('Start.png');
+    }
+
+    #GetReady
+    {
+      height: 152px;
+      width: 240px;
+      left: 50vw;
+      top: 50vh;
+      position: absolute;
+      margin-left: -120px;
+      margin-top: -76px;
+      background-image: url('GetReady.png');
+    }
+
+  </style>
+
+  <script>
+
+    function GameOverFunction() {
+      if (!window.GameOver) {
+        window.GameOver = true;
+        window.GameOverDiv = document.createElement('div');
+        window.GameOverDiv.id = 'GameOver';
+        document.body.appendChild(window.GameOverDiv);
+        window.StartDiv = document.createElement('div');
+        window.StartDiv.id = 'Start';
+        document.body.appendChild(window.StartDiv);
+        window.Bird.Speed = 8;
+
+        window.StartDiv.addEventListener('click', function (event) {
+
+          document.body.removeChild(window.GameOverDiv);
+          document.body.removeChild(window.StartDiv);
+          GetReadyFunc();
+
+        }, true);
+      }
+    }
+
+    function GetReadyFunc() {
+
+      window.GetReady = document.createElement('div');
+      window.GetReady.id = 'GetReady';
+      document.body.appendChild(window.GetReady);
+
+      window.GetReady.addEventListener('click', function (event) {
+
+        window.NumberCount = 0;
+        UpdateNumberCount();
+        window.GameOver = false;
+        window.Bird.Speed = 0.0;
+        window.Bird.Y = 0.0;
+        document.body.removeChild(window.GetReady);
+
+        for (i = 0; i < window.PipeList.length; i++) {
+          window.PipeList[i].Start();
+        }
+
+      }, true);
+
+      return;
+
+    }
+
+    function UpdateNumberCount() {
+
+      var st = '';
+      var WholeNumber = window.NumberCount.toString();
+
+      for (i = 0; i < WholeNumber.length; i++) {
+        var Number = WholeNumber.substring(i, i + 1)
+        var style = 'background-position: -' + (24 * Number) + 'px 0px';
+        st = st + '<div class="Number" style="' + style + '"></div>';
+      }
+
+      window.NumberBlock.innerHTML = st;
+    }
+
+    function Bird() {
+      var img = document.createElement('img');
+      img.id = 'Bird';
+      //img.src = 'BirdUp.png';
+      img.src = 'MrP.png';
+      document.body.appendChild(img);
+      this.img = img;
+      this.Speed = 0.0;
+      this.Y = 0.0;
+
+      var Me = this;
+
+      this.BirdTimer = setInterval(function () {
+
+        Me.Speed = Me.Speed + 0.020;
+
+        if (Me.Speed > 8) {
+          Me.Speed = 8;
+        }
+
+        Me.Y = Me.Y + Me.Speed;
+
+        if (Me.Y < 0) {
+          Me.Y = 0;
+        }
+
+        if (Me.Y > (window.innerHeight - 135)) {
+          Me.Y = (window.innerHeight - 135);
+          GameOverFunction();
+        }
+
+        Me.img.style.top = Me.Y + 'px';
+
+        var Angle = Me.Speed * 20;
+        Me.img.style.transform = 'rotate(' + Angle + 'deg)';
+
+      }, 1);
+
+      this.FlapTimer = setInterval(function () {
+
+        //if (Me.img.src.indexOf('BirdUp.png') != -1) {
+        //  Me.img.src = 'BirdDown.png'
+        //}
+        //else {
+        //  Me.img.src = 'BirdUp.png'
+        //}
+
+        if (Me.img.src.indexOf('BirdUp.png') != -1) {
+          Me.img.src = 'BirdDown.png'
+        }
+        else {
+          Me.img.src = 'BirdUp.png'
+        }
+
+      }, 100);
+
+    }
+
+    function Load() {
+
+      window.NumberCount = 0;
+      window.PipeSpace = 250;
+      window.GameOver = false;
+
+      window.Bird = new Bird();
+      window.NumberBlock = document.createElement('div');
+      window.NumberBlock.className = 'NumberBlock';
+      document.body.appendChild(window.NumberBlock);
+
+      UpdateNumberCount();
+      BackGroundShift();
+
+      window.addEventListener('click', function (event) {
+
+        if (!window.GameOver) {
+          window.Bird.Speed = -2.0;
+        }
+
+      }, true);
+
+    }
+
+    function Pipe(Offset) {
+
+      window.MaxOffset = Offset;
+
+      var MainDiv = document.createElement('div');
+      MainDiv.className = 'MainPipe';
+      //MainDiv.style.left = window.innerWidth + ((Offset - 1) * window.PipeSpace) + 'px';
+
+      MainDiv.id = 'Pipe' + Offset.toString();
+
+      var PipeTop = document.createElement('div');
+      PipeTop.className = 'PipeTop';
+      MainDiv.appendChild(PipeTop);
+
+      var PipeHeadTop = document.createElement('div');
+      PipeHeadTop.className = 'PipeHead';
+      MainDiv.appendChild(PipeHeadTop);
+
+      var PipeMiddle = document.createElement('div');
+      PipeMiddle.className = 'PipeMiddle';
+      MainDiv.appendChild(PipeMiddle);
+
+      var PipeHeadBottom = document.createElement('div');
+      PipeHeadBottom.className = 'PipeHead';
+      MainDiv.appendChild(PipeHeadBottom);
+
+      var PipeBottom = document.createElement('div');
+      PipeBottom.className = 'PipeBottom';
+      MainDiv.appendChild(PipeBottom);
+
+      this.MainDiv = MainDiv;
+      this.Offset = Offset;
+      var Me = this;
+      this.CounterDone = false;
+
+      document.body.appendChild(MainDiv);
+      this.PipeTop = PipeTop;
+
+      
+
+      this.Start = function(){
+        Me.MainDiv.style.left = window.innerWidth + ((Me.Offset - 1) * window.PipeSpace) + 'px';
+      }
+
+      this.Start()
+
+      this.Shift = function () {
+        Me.MainDiv.style.left = parseFloat(Me.MainDiv.style.left) - 0.6 + 'px';
+
+        var left = parseFloat(Me.MainDiv.style.left)
+
+        if (left <= -71) {
+          Me.Reset();
+          return;
+        }
+
+        if (!window.GameOver) {
+
+          if (!Me.CounterDone) {
+            if ((left + 74) <= 150) {
+              Me.CounterDone = true;
+
+              window.NumberCount = window.NumberCount + 1;
+              UpdateNumberCount();
+
+            }
+          }
+
+          if ((left <= 200) && ((left + 74) >= 150)) {
+
+            var Bird = document.getElementById('Bird');
+            var BirdTop = parseFloat(Bird.style.top);
+            var BirdBottom = BirdTop + 38;
+
+            var PipeTop = parseFloat(Me.PipeTop.style.height) + 32;
+            var PipeBottom = PipeTop + 200;
+
+            if ((PipeTop >= BirdTop) || (BirdBottom >= PipeBottom)) {
+              GameOverFunction();
+            }
+
+          }
+
+        }
+
+      }
+
+      this.Reset = function () {
+
+        Me.CounterDone = false;
+        Me.SetHeights();
+
+        var num = Me.Offset - 1;
+
+        if (num == 0) {
+          num = window.MaxOffset;
+        }
+
+        var a = document.getElementById('Pipe' + num.toString());
+        Me.MainDiv.style.left = parseFloat(a.style.left) + window.PipeSpace + 'px';
+      }
+
+      this.SetHeights = function () {
+
+        var Total = (window.innerHeight - 99);
+        var Gap = 200;
+        var h1 = parseInt(Math.random() * (Total - Gap - 50));
+
+        Me.PipeTop.style.height = h1 + 'px';
+        //Me.PipeBottom.style.height = Total - h1 - Gap + 'px';
+
+      }
+
+      this.SetHeights();
+
+    }
+
+    function BackGroundShift() {
+
+      var Clouds = document.createElement('div');
+      Clouds.id = 'Clouds';
+      document.body.appendChild(Clouds);
+      window.Clouds = Clouds;
+
+      var BottomClouds = document.createElement('div');
+      BottomClouds.id = 'BottomClouds';
+      document.body.appendChild(BottomClouds);
+
+      var Buildings = document.createElement('div');
+      Buildings.id = 'Buildings';
+      document.body.appendChild(Buildings);
+      window.Buildings = Buildings;
+
+      var Bush = document.createElement('div');
+      Bush.id = 'Bush';
+      document.body.appendChild(Bush);
+      window.Bush = Bush;
+
+      var Ground = document.createElement('div');
+      Ground.id = 'Ground';
+      document.body.appendChild(Ground);
+
+      var Strip = document.createElement('div');
+      Strip.id = 'Strip';
+      document.body.appendChild(Strip);
+      window.Strip = Strip;
+
+      window.PipeList = [];
+      window.PipeList.push(new Pipe(1));
+      window.PipeList.push(new Pipe(2));
+      window.PipeList.push(new Pipe(3));
+      window.PipeList.push(new Pipe(4));
+      window.PipeList.push(new Pipe(5));
+      window.PipeList.push(new Pipe(6));
+      window.PipeList.push(new Pipe(7));
+      window.PipeList.push(new Pipe(8));
+
+      var BackGroundShiftTimer = setInterval(function () {
+
+        for (i = 0; i < window.PipeList.length; i++) {
+          window.PipeList[i].Shift();
+        }
+
+      }, 1);
+
+    }
+
+
+
+  </script>
+
+</head>
+<body onload="Load()">
+</body>
+</html>
